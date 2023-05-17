@@ -1,0 +1,73 @@
+server:
+  profile:
+    # 当前激活使用的配置文件
+    active:
+  application:
+    name: manager
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jgdb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+    # 处理swagger报错: https://blog.csdn.net/Shipley_Leo/article/details/129100908
+    path-match:
+      matching-strategy: ant_path_matcher
+    format:
+      # 接受前端输入的date类型参数格式
+      date-time: yyyy-MM-dd HH:mm:ss
+      date: yyyy-MM-dd
+      time: HH:mm:ss
+  jackson:
+    # 输出给前端时, 时间格式化(全局)
+    dateFormat: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis-plus:
+  # 实体类包别名
+  typeAliasesPackage: top.code2022.entity.pojo
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configLocation:
+    # 自动将数据库中的下划线转换为驼峰命名, eg: 数据库中的字段sell_point将会被映射为实体类中的sellPoint
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    top.code2022.dao: debug   # 查看dao层的sql语句
+
+swagger:
+  enable: true
+  basePackage: top.code2022.controller
+  antPattern: /**
+  groupName: jingo
+  title: jingo's api
+  description: 惊购电商项目接口文档
+  version: v1.0
+  email: yujing_2022@126.com
+  name: Tiam
+  license: Apache 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
+
+---
+# 测试环境
+spring:
+  config:
+    activate:
+      on-profile: test
+  server:
+    port: 8081
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql.sqlpub.com:3306/jgdb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: tiam_bloom
+    password: 0c2f93a2586baa5b

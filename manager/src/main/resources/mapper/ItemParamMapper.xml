@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.code2022.dao.ItemParamMapper">
+    <resultMap id="ItemParamCatMap" type="top.code2022.pojo.ItemParam">
+        <id property="id" column="id"/>
+        <result property="itemCatId" column="item_cat_id"/>
+        <result property="itemCatName" column="name"/>
+        <result property="paramData" column="param_data"/>
+        <result property="updated" column="updated"/>
+        <result property="created" column="created"/>
+    </resultMap>
+
+    <select id="queryAllItemParam" resultMap="ItemParamCatMap">
+        select p.*, c.name
+        from tb_item_param p
+                 left join tb_item_cat c on p.item_cat_id = c.id
+        order by updated desc
+        limit #{start},#{pageSize}
+    </select>
+</mapper>
