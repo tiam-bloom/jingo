@@ -4,7 +4,7 @@
 
 - SpringBoot 2.7.6
 - swagger3 
-- mybatis-plus 3.0.7
+- mybatis-plus 3.0.7+
 - 
 
 ## 接口文档
