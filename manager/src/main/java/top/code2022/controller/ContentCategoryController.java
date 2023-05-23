@@ -41,7 +41,7 @@ public class ContentCategoryController {
         // 方案一: 查看当前parentId 是否 的 is_parent 是否为1, 为1创建目录(1), 为0创建内容(0)
 //        if (!cc.getIsParent()) contentCategory.setParentId(cc.getParentId());
 //        contentCategory.setIsParent(cc.getIsParent());
-
+        // todo: 哪种?
         // 方案二: 只能创建子分类, 不能创建目录分类
         if (!cc.getIsParent())
             return R.error("当前分类不是父级分类, 无法创建子分类");
